@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yihao Liu</title>
+<meta name="description" content="Yihao Liu, MSc student and visiting researcher at Imperial College London, working on health data and a multimorbidity index built from GP prescriptions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=Atkinson+Hyperlegible+Next:wght@400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400&display=swap&text=%E4%B8%AD%E6%96%87%E4%B8%8A%E6%B5%B7%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%A6%E5%8C%BB%E5%AD%A6%E9%99%A2%E9%99%84%E5%B1%9E%E7%AC%AC%E4%B9%9D%E4%BA%BA%E6%B0%91%E5%8C%BB%E9%99%A2">
+<style>
+/*
+  Direction: "One ink". The whole site is printed in a single cobalt ink on porcelain,
+  the blue-and-white shared by Jingdezhen porcelain and Portuguese azulejos, and by blue-base X-ray film.
+  Layout: a cobalt plate (masthead) and footer bookend a porcelain page; sections use an
+  asymmetric 3/9 index grid. Signature: a swimmer plot of the path PT -> FR -> UK, real dates, no data.
+*/
+:root {
+  /* colour: one ink family */
+  --ground: #F5F6FA;      /* porcelain */
+  --ink: #101A4D;         /* body text, deep cobalt-black */
+  --cobalt: #2339B8;      /* the ink: name, links, marks */
+  --ink-soft: #4A5590;    /* secondary text (6.5:1 on ground) */
+  --line: #C3CAE6;        /* rules, gridlines */
+  --tint: #E3E7F6;        /* quiet fills */
+  --plate: #1D2E94;       /* masthead + footer band */
+  --on-plate: #F3F5FC;    /* text on plate (10.3:1) */
+  --on-plate-soft: #B9C3EE; /* secondary on plate (6.5:1) */
+  --plate-line: #3A4BAE;
+
+  /* type */
+  --serif: "Spectral", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+  --mono: "Atkinson Hyperlegible Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --han: "Noto Serif SC", "Songti SC", "SimSun", serif;
+
+  /* scale */
+  --fs-name: clamp(4.25rem, 18vw, 12rem);
+  --fs-xl: clamp(1.5rem, 1.05rem + 1.7vw, 2.25rem);
+  --fs-l: clamp(1.3125rem, 1.15rem + 0.6vw, 1.625rem);
+  --fs-body: 1.1875rem;
+  --fs-ui: 1rem;
+  --fs-s: 0.875rem;
+  --fs-xs: 0.8125rem;
+
+  --measure: 40rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0A0F2A; --ink: #E6EAF7; --cobalt: #93A8FF; --ink-soft: #A3ADD6;
+    --line: #2A3470; --tint: #161E52;
+    --plate: #152063; --on-plate: #E6EAF7; --on-plate-soft: #A9B5E8; --plate-line: #2E3C8C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #0A0F2A; --ink: #E6EAF7; --cobalt: #93A8FF; --ink-soft: #A3ADD6;
+  --line: #2A3470; --tint: #161E52;
+  --plate: #152063; --on-plate: #E6EAF7; --on-plate-soft: #A9B5E8; --plate-line: #2E3C8C;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, p, ol, ul, dl, dd, figure { margin: 0; }
+ol, ul { padding: 0; list-style: none; }
+.han { font-family: var(--han); font-weight: 400; letter-spacing: 0.02em; }
+
+a { color: var(--cobalt); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; text-decoration-color: var(--line); transition: text-decoration-color .15s, text-decoration-thickness .15s; }
+a:hover { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 3px; border-radius: 2px; }
+
+.wrap {
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .wrap {
+    padding-left: max(40px, env(safe-area-inset-left, 0px));
+    padding-right: max(40px, env(safe-area-inset-right, 0px));
+  }
+}
+
+/* ---------- Plate (masthead + footer) ---------- */
+.plate { background: var(--plate); color: var(--on-plate); }
+.plate a { color: var(--on-plate); text-decoration-color: var(--plate-line); }
+.plate a:hover { text-decoration-color: currentColor; }
+.plate :focus-visible { outline-color: var(--on-plate); }
+
+.mast-top {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-block: 1.25rem;
+  font-family: var(--sans); font-size: var(--fs-s);
+  color: var(--on-plate-soft);
+}
+.mast-top { flex-wrap: nowrap; }
+.mast-nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.theme-btn { flex: none; }
+.mast-nav a { color: var(--on-plate-soft); text-decoration: none; }
+.mast-nav a:hover { color: var(--on-plate); text-decoration: underline; text-decoration-thickness: 1px; }
+.theme-btn {
+  font: 500 var(--fs-xs)/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--on-plate); background: transparent;
+  border: 1px solid var(--plate-line); border-radius: 999px;
+  padding: 0.45rem 0.8rem; cursor: pointer;
+}
+.theme-btn:hover { border-color: var(--on-plate-soft); }
+
+.name {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: var(--fs-name);
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  margin-top: clamp(2.5rem, 9vw, 6.5rem);
+  margin-left: -0.04em;
+}
+.mast-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.25rem;
+  padding-block: clamp(2rem, 5vw, 3.25rem) clamp(2.75rem, 7vw, 5rem);
+}
+@media (min-width: 900px) {
+  .mast-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 4rem; align-items: end; }
+}
+.positioning {
+  font-size: var(--fs-xl);
+  line-height: 1.3;
+  font-weight: 400;
+  max-width: 30ch;
+  text-wrap: balance;
+}
+.affiliation {
+  margin-top: 1.25rem;
+  font-family: var(--sans); font-size: var(--fs-ui); line-height: 1.5;
+  color: var(--on-plate-soft); max-width: 46ch;
+}
+.contact { display: grid; gap: 0.15rem; font-family: var(--sans); font-size: var(--fs-ui); }
+.contact li { border-top: 1px solid var(--plate-line); }
+.contact li:last-child { border-bottom: 1px solid var(--plate-line); }
+.contact a {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-block: 0.6rem; text-decoration: none;
+}
+.contact a:hover .arrow { transform: translate(2px, -2px); }
+.arrow { font-family: var(--mono); color: var(--on-plate-soft); transition: transform .15s; }
+.email {
+  display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem;
+  padding-block: 0.7rem;
+}
+.email-addr { font-family: var(--mono); font-size: 0.875rem; color: var(--on-plate); text-decoration: none; user-select: all; overflow-wrap: anywhere; min-width: 0; }
+.copy-btn {
+  font: 500 var(--fs-xs)/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--plate); background: var(--on-plate);
+  border: 0; border-radius: 999px; padding: 0.5rem 0.85rem; cursor: pointer;
+  min-width: 5.5rem; flex: none;
+}
+.copy-btn:hover { background: var(--on-plate-soft); }
+
+/* ---------- Sections: 3/9 index grid ---------- */
+main section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 1rem;
+}
+main section:first-child { border-top: 0; }
+@media (min-width: 900px) {
+  main section { grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 3rem; }
+  .sec-head { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 1.5rem); align-self: start; }
+}
+.sec-head h2 {
+  font-family: var(--serif); font-weight: 400; font-style: italic;
+  font-size: var(--fs-xl); line-height: 1.1; color: var(--cobalt);
+}
+.sec-body { min-width: 0; display: grid; gap: 2rem; }
+.prose { max-width: var(--measure); display: grid; gap: 1.1rem; text-wrap: pretty; }
+.prose p:first-child { font-size: 1.375rem; line-height: 1.45; }
+
+.label {
+  font-family: var(--mono); font-size: var(--fs-xs); font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--cobalt);
+}
+
+/* ---------- Signature: swimmer plot of the path ---------- */
+.path { container-type: inline-size; display: grid; gap: 1rem; padding-top: 0.5rem; --y0: 2021; --span: 7; --now: 2026.83; }
+.path-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1.5rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; font-family: var(--sans); font-size: var(--fs-xs); color: var(--ink-soft); }
+.legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.key { display: inline-block; width: 1.4rem; height: 8px; border-radius: 4px; background: var(--cobalt); }
+.key.plan { background: repeating-linear-gradient(-45deg, var(--cobalt) 0 1.5px, transparent 1.5px 4px); box-shadow: inset 0 0 0 1px var(--cobalt); }
+.key.dot { width: 9px; height: 9px; border-radius: 50%; }
+.key.ongoing { width: 1.1rem; border-radius: 4px 0 0 4px; position: relative; margin-right: 6px; }
+.key.ongoing::after { content: ""; position: absolute; left: 100%; top: -3px; border: 7px solid transparent; border-left: 7px solid var(--cobalt); border-right: 0; }
+
+.plot { display: grid; }
+.row, .axis { display: grid; grid-template-columns: minmax(0, 1fr); }
+.track { position: relative; min-height: 1.6rem;
+  background-image: linear-gradient(to right, var(--line) 1px, transparent 1px);
+  background-size: calc(100% / var(--span)) 100%;
+}
+.axis .track { background: none; min-height: 1.5rem; }
+.axis .lab { visibility: hidden; }
+.yr {
+  position: absolute; bottom: 0.25rem;
+  left: calc((var(--y) - var(--y0)) / var(--span) * 100%);
+  padding-left: 4px;
+  font-family: var(--mono); font-size: 0.75rem; color: var(--ink-soft); font-variant-numeric: tabular-nums;
+}
+.yr.odd { display: none; }
+
+.group-name {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.75rem;
+  padding-top: 0.9rem; padding-bottom: 0.15rem;
+  font-family: var(--serif); font-style: italic; font-size: 1.125rem; color: var(--cobalt);
+}
+.group-name .codes { font-family: var(--mono); font-style: normal; font-size: 0.75rem; letter-spacing: 0.08em; color: var(--ink-soft); }
+.row { transition: opacity .2s; }
+.lab { font-family: var(--sans); font-size: 0.9375rem; line-height: 1.35; padding-block: 0.3rem 0.1rem; min-width: 0; }
+.lab b { font-weight: 500; }
+.lab .meta { color: var(--ink-soft); font-size: var(--fs-xs); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lab a { text-decoration-color: var(--line); }
+.lab .han { display: block; font-size: 0.8125rem; white-space: nowrap; color: var(--ink-soft); }
+
+.bar, .pt {
+  position: absolute; top: 50%; transform-origin: left center;
+  left: calc((var(--s) - var(--y0)) / var(--span) * 100%);
+}
+.bar {
+  height: 8px; margin-top: -4px; border-radius: 4px;
+  min-width: 22px;
+  width: calc((var(--e) - var(--s)) / var(--span) * 100%);
+  --split: clamp(0%, calc((var(--now) - var(--s)) / (var(--e) - var(--s)) * 100%), 100%);
+  background:
+    linear-gradient(to right, var(--cobalt) var(--split), transparent var(--split)),
+    repeating-linear-gradient(-45deg, var(--cobalt) 0 1.5px, transparent 1.5px 4px);
+  box-shadow: inset 0 0 0 1px var(--cobalt), 0 0 0 2px var(--ground);
+}
+.bar.ongoing { --e: var(--now); border-radius: 4px 0 0 4px; }
+.bar.ongoing::after {
+  content: ""; position: absolute; left: 100%; top: -4px;
+  border: 8px solid transparent; border-left: 9px solid var(--cobalt); border-right: 0;
+}
+.bar.left-open { border-radius: 0 4px 4px 0; }
+.pt { width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--cobalt); box-shadow: 0 0 0 2px var(--ground); }
+
+.now-line { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1.5px dashed var(--cobalt); left: calc((var(--now) - var(--y0)) / var(--span) * 100%); pointer-events: none; }
+.now-lab {
+  position: absolute; top: 0.3rem; right: calc(100% - (var(--now) - var(--y0)) / var(--span) * 100%);
+  padding-right: 6px; white-space: nowrap;
+  font-family: var(--mono); font-size: 0.75rem; color: var(--cobalt);
+}
+.axis.bottom .track { min-height: 1.75rem; }
+
+.plot:has(.row:hover, .row:focus-within) .row:not(:hover):not(:focus-within) { opacity: 0.38; }
+
+.path figcaption { font-family: var(--sans); font-size: var(--fs-s); line-height: 1.5; color: var(--ink-soft); max-width: 60ch; }
+
+@container (min-width: 36rem) {
+  .row, .axis { grid-template-columns: 16.5rem minmax(0, 1fr); column-gap: 1.25rem; }
+  .group-name { grid-column: 1 / -1; }
+  .lab { padding-block: 0.45rem; }
+  .track { min-height: 0; }
+}
+@container (min-width: 44rem) {
+  .yr.odd { display: block; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bar { animation: grow .9s cubic-bezier(.2,.7,.1,1) both; animation-delay: calc(var(--i, 0) * 70ms); }
+  .pt { animation: pop .5s ease-out both; animation-delay: calc(var(--i, 0) * 70ms); }
+  @keyframes grow { from { transform: scaleX(0.02); } to { transform: scaleX(1); } }
+  @keyframes pop { from { transform: scale(0.2); } to { transform: scale(1); } }
+}
+
+/* ---------- Research ---------- */
+.project { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+.project > * { min-width: 0; }
+.project + .project { padding-top: clamp(2.5rem, 5vw, 3.5rem); border-top: 1px solid var(--line); }
+.meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; font-family: var(--sans); font-size: var(--fs-s); color: var(--ink-soft); }
+.chip {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font: 500 var(--fs-xs)/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--cobalt); border: 1px solid currentColor; border-radius: 999px; padding: 0.35rem 0.7rem;
+}
+.chip.solid { background: var(--cobalt); color: var(--ground); border-color: var(--cobalt); }
+.project h3 { font-family: var(--serif); font-weight: 500; font-size: var(--fs-l); line-height: 1.15; letter-spacing: -0.01em; text-wrap: balance; max-width: 26ch; }
+.project .prose p { font-size: var(--fs-body); line-height: 1.55; }
+.people { font-family: var(--sans); font-size: var(--fs-ui); color: var(--ink-soft); max-width: var(--measure); }
+.withheld { font-family: var(--sans); font-size: var(--fs-s); color: var(--ink-soft); }
+.withheld b { color: var(--ink); font-weight: 500; }
+
+.steps {
+  display: grid; gap: 1.25rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+  counter-reset: step;
+  margin-top: 0.5rem;
+  max-width: 48rem;
+}
+.steps li { border-top: 2px solid var(--cobalt); padding-top: 0.7rem; display: grid; gap: 0.3rem; align-content: start; counter-increment: step; }
+.steps li::before { content: counter(step); font-family: var(--mono); font-size: var(--fs-xs); color: var(--cobalt); }
+.steps b { font-family: var(--sans); font-weight: 600; font-size: var(--fs-ui); }
+.steps span { font-family: var(--sans); font-size: 0.9375rem; line-height: 1.45; color: var(--ink); }
+
+.spec {
+  display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.5rem 1.5rem;
+  background: var(--tint); border-radius: 3px; padding: 1rem 1.25rem; max-width: var(--measure);
+  font-family: var(--sans); font-size: var(--fs-s);
+}
+.spec dt { font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: 0.04em; color: var(--ink-soft); padding-top: 0.1rem; }
+.spec dd { font-variant-numeric: tabular-nums; min-width: 0; }
+
+/* ---------- Publications ---------- */
+.pubs { display: grid; gap: 1.5rem; }
+.pub { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.4rem 2rem; }
+@media (min-width: 640px) { .pub { grid-template-columns: 4rem minmax(0, 1fr); } }
+.pub-year { font-family: var(--mono); font-size: var(--fs-s); color: var(--cobalt); font-variant-numeric: tabular-nums; padding-top: 0.3rem; }
+.pub-title { font-size: var(--fs-l); line-height: 1.35; text-wrap: pretty; max-width: 36ch; }
+.pub-authors, .pub-venue { font-family: var(--sans); font-size: 0.9375rem; color: var(--ink-soft); }
+.pub-authors .me { color: var(--ink); font-weight: 600; }
+.pub-venue i { font-family: var(--serif); font-size: 1rem; color: var(--ink); }
+.pub-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; margin-top: 0.35rem; font-family: var(--sans); font-size: var(--fs-s); }
+.authorpos { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--ink-soft); }
+.authorpos .ticks { display: inline-flex; gap: 3px; }
+.authorpos i { width: 8px; height: 8px; border-radius: 1px; box-shadow: inset 0 0 0 1px var(--cobalt); }
+.authorpos i.me { background: var(--cobalt); }
+.doi { font-family: var(--mono); font-size: var(--fs-xs); overflow-wrap: anywhere; }
+.note { font-family: var(--sans); font-size: 0.9375rem; color: var(--ink-soft); }
+
+/* ---------- Other work ---------- */
+.others { display: grid; gap: 2rem 3rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+.other { display: grid; gap: 0.6rem; align-content: start; }
+.other .label { color: var(--ink-soft); letter-spacing: 0.03em; }
+.other h3 { font-family: var(--serif); font-weight: 500; font-size: var(--fs-l); line-height: 1.2; }
+.other p { font-size: 1.0625rem; text-wrap: pretty; }
+.facts { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; font-family: var(--mono); font-size: var(--fs-xs); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.facts li + li::before { content: "/"; margin-right: 1rem; color: var(--line); }
+
+/* Numbers and dates in Spectral (Atkinson draws slashed zeros) */
+.meta, .yr, .pub-year, .label, .meta-row, .colophon, .now-lab, .lab .meta {
+  font-family: var(--serif); font-variant-numeric: lining-nums tabular-nums;
+}
+.label { letter-spacing: 0.04em; }
+
+/* ---------- Footer ---------- */
+.foot { display: grid; gap: 2rem; padding-block: clamp(2.75rem, 6vw, 4.5rem); }
+@media (min-width: 900px) { .foot { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 4rem; align-items: end; } }
+.langs { font-size: var(--fs-xl); line-height: 1.3; max-width: 28ch; text-wrap: balance; }
+.langs [lang] { font-style: italic; }
+.langs .han { font-style: normal; }
+.colophon { display: grid; gap: 0.6rem; font-family: var(--sans); font-size: var(--fs-s); color: var(--on-plate-soft); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+</style>
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Yihao Liu">
+<meta property="og:description" content="Yihao Liu, MSc student and visiting researcher at Imperial College London, working on health data and a multimorbidity index built from GP prescriptions.">
+<meta property="og:url" content="https://liuy7713.github.io/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Yihao Liu",
+  "url": "https://liuy7713.github.io/",
+  "email": "mailto:yihao.liu@imperial.ac.uk",
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "Imperial College London"
+  },
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "École Polytechnique"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "King's College London"
+    }
+  ],
+  "knowsAbout": [
+    "Biostatistics",
+    "Computational epidemiology",
+    "Survival analysis",
+    "Health data science",
+    "Medical imaging"
+  ],
+  "knowsLanguage": [
+    "en",
+    "pt",
+    "zh",
+    "fr"
+  ],
+  "sameAs": [
+    "https://scholar.google.com/citations?user=jnAepbcAAAAJ",
+    "https://www.linkedin.com/in/yihao-liu/",
+    "https://github.com/liuy7713"
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="plate">
+  <div class="wrap">
+    <div class="mast-top">
+      <nav class="mast-nav" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#other">Projects</a>
+      </nav>
+      <button type="button" class="theme-btn" id="theme-btn" aria-label="Switch colour theme">Dark</button>
+    </div>
+
+    <h1 class="name">Yihao Liu</h1>
+
+    <div class="mast-grid">
+      <div>
+        <p class="positioning">Working out what a person’s GP prescriptions say about their health.</p>
+        <p class="affiliation">MSc Health Data Analytics &amp; Machine Learning, and visiting researcher in the Department of Epidemiology &amp; Biostatistics, Imperial College London</p>
+      </div>
+      <ul class="contact" aria-label="Links">
+        <li><a href="https://scholar.google.com/citations?user=jnAepbcAAAAJ" target="_blank" rel="noopener">Google Scholar <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://github.com/liuy7713" target="_blank" rel="noopener">GitHub <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://www.linkedin.com/in/yihao-liu/" target="_blank" rel="noopener">LinkedIn <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a href="cv.pdf" target="_blank" rel="noopener">CV, PDF <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li class="email">
+          <a class="email-addr" id="email-addr" href="mailto:yihao.liu@imperial.ac.uk">yihao.liu@imperial.ac.uk</a>
+          <button type="button" class="copy-btn" id="copy-btn" aria-describedby="email-addr">Copy</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="about" aria-labelledby="h-about">
+    <div class="sec-head"><h2 id="h-about">About</h2></div>
+    <div class="sec-body">
+      <div class="prose">
+        <p>I trained in mathematics and computer science at École Polytechnique, with an exchange term at King’s College London. Over those three years my interest moved from the theory itself towards applying it to clinical and population health data.</p>
+        <p>I am now reading for the MSc in Health Data Analytics and Machine Learning at Imperial’s School of Public Health, supported by an SPH Masters Scholarship. Alongside the degree I am a visiting researcher in the EBS Omics group, where my bachelor thesis on GP prescription records has developed into an ongoing project.</p>
+        <p>My first clinical experience was a summer at Shanghai Ninth People’s Hospital in 2023, observing plastic and reconstructive surgery. In 2025 I joined the research summer school at St Thomas’ Hospital, building software for X-ray quality assurance.</p>
+      </div>
+
+      <figure class="path" id="path" aria-labelledby="path-cap">
+        <div class="path-head">
+          <p class="label">Where I’ve been, 2021 to now</p>
+          <div class="legend" aria-hidden="true">
+            <span><i class="key"></i>Completed</span>
+            <span><i class="key ongoing"></i>Ongoing</span>
+            <span><i class="key plan"></i>Planned</span>
+          </div>
+        </div>
+
+        <div class="plot">
+          <div class="axis" aria-hidden="true">
+            <div class="lab">&nbsp;</div>
+            <div class="track">
+              <span class="yr" style="--y:2021">2021</span>
+              <span class="yr" style="--y:2022">2022</span>
+              <span class="yr" style="--y:2023">2023</span>
+              <span class="yr" style="--y:2024">2024</span>
+              <span class="yr" style="--y:2025">2025</span>
+              <span class="yr" style="--y:2026">2026</span>
+              <span class="yr" style="--y:2027">2027</span>
+            </div>
+          </div>
+
+          <p class="group-name">Portugal <span class="codes">PT · EN</span></p>
+          <div class="row">
+            <p class="lab"><b>St Julian’s School</b>, IB Diploma <span class="meta">2016–2023</span></p>
+            <div class="track" aria-hidden="true"><span class="bar left-open" style="--s:2021;--e:2023.5;--i:0"></span><span class="now-line"></span></div>
+          </div>
+
+          <p class="group-name">China <span class="codes">ZH</span></p>
+          <div class="row">
+            <p class="lab"><b>Shanghai Ninth People’s Hospital</b>, observership <span class="meta">summer 2023</span><span class="han" lang="zh-Hans">上海交通大学医学院附属第九人民医院</span></p>
+            <div class="track" aria-hidden="true"><span class="bar" style="--s:2023.5;--e:2023.67;--i:2"></span><span class="now-line"></span></div>
+          </div>
+
+          <p class="group-name">France <span class="codes">FR · EN</span></p>
+          <div class="row">
+            <p class="lab"><b>École Polytechnique</b>, BSc <span class="meta">2023–2026</span></p>
+            <div class="track" aria-hidden="true"><span class="bar" style="--s:2023.67;--e:2026.5;--i:3"></span><span class="now-line"></span></div>
+          </div>
+
+          <p class="group-name">United Kingdom <span class="codes">EN</span></p>
+          <div class="row">
+            <p class="lab"><b>King’s College London</b>, X-ray project <span class="meta">summer 2025</span></p>
+            <div class="track" aria-hidden="true"><span class="bar" style="--s:2025.5;--e:2025.67;--i:4"></span><span class="now-line"></span></div>
+          </div>
+          <div class="row">
+            <p class="lab"><b>King’s College London</b>, exchange term <span class="meta">2025–2026</span></p>
+            <div class="track" aria-hidden="true"><span class="bar" style="--s:2025.67;--e:2026.04;--i:5"></span><span class="now-line"></span></div>
+          </div>
+          <div class="row">
+            <p class="lab"><b>Imperial, EBS Omics group</b>, visiting researcher <span class="meta">2025–</span></p>
+            <div class="track" aria-hidden="true"><span class="bar ongoing" style="--s:2025.83;--i:6"></span><span class="now-line"></span></div>
+          </div>
+          <div class="row">
+            <p class="lab"><b>Imperial College London</b>, MSc <span class="meta">2026–2027</span></p>
+            <div class="track" aria-hidden="true"><span class="bar" style="--s:2026.67;--e:2027.67;--i:7"></span><span class="now-line"></span></div>
+          </div>
+
+          <div class="axis bottom" aria-hidden="true">
+            <div class="lab">&nbsp;</div>
+            <div class="track"><span class="now-line"></span><span class="now-lab" id="now-lab">Oct 2026</span></div>
+          </div>
+        </div>
+
+        <figcaption id="path-cap">Drawn as a swimmer plot. The letters beside each country are the languages I studied or worked in there.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="research" aria-labelledby="h-research">
+    <div class="sec-head"><h2 id="h-research">Research</h2></div>
+    <div class="sec-body">
+
+      <article class="project" id="pmmi" aria-labelledby="h-pmmi">
+        <div class="meta-row">
+          <span class="chip solid">Ongoing</span>
+          <span class="chip">Preprint forthcoming</span>
+          <span>PMMI · Imperial College London · since 2025</span>
+        </div>
+        <h3 id="h-pmmi">Prescription‑Mediated Multi‑Morbidity Index</h3>
+        <div class="prose">
+          <p>Multimorbidity is usually measured by counting diagnoses, as established indices such as Charlson and Elixhauser do. PMMI is built from GP prescription records instead. The question is whether the medicines a person takes carry information about their mortality risk that their diagnoses miss.</p>
+        </div>
+        <ol class="steps" aria-label="Approach">
+          <li><b>Prescriptions</b><span>GP prescription records in UK Biobank, grouped into sex-specific British National Formulary categories</span></li>
+          <li><b>Selection</b><span>Elastic-net Cox regression and stability selection calibrated with SHARP, to find a small set that holds up when the data change</span></li>
+          <li><b>Check</b><span>Random survival forests, to see what a non-linear model would pick</span></li>
+          <li><b>Score</b><span>A short integer score you can read off without a model</span></li>
+        </ol>
+        <p class="people">Developed from my bachelor thesis. Supervised by Dr Dragana Vuckovic and Prof. Marc Chadeau-Hyam, with Dr Rin Wada. EBS Omics group, Department of Epidemiology &amp; Biostatistics, School of Public Health.</p>
+      </article>
+
+      <article class="project" id="xray" aria-labelledby="h-xray">
+        <div class="meta-row">
+          <span class="chip">Finished</span>
+          <span>King’s College London, BMEIS · summer 2025</span>
+        </div>
+        <h3 id="h-xray">Checking X-ray image quality automatically</h3>
+        <div class="prose">
+          <p>Hospitals check their fluoroscopy systems by imaging a test object, a phantom, and finding the finest pattern of lines the system can still resolve. This is usually done by eye, which is slow and varies between readers.</p>
+          <p>At the research summer school at St Thomas’ Hospital I wrote a MATLAB pipeline that automates this reading for the Leeds TOR 18FG phantom. It takes about a second per image and resolves detail roughly 50% finer than human readers. Results were validated against ImageJ.</p>
+        </div>
+        <ol class="steps" aria-label="Pipeline">
+          <li><b>Prepare</b><span>Clean up the DICOM image</span></li>
+          <li><b>Locate</b><span>Find the phantom’s rim with Canny edges and a Hough transform</span></li>
+          <li><b>Align</b><span>Straighten it with Powell optimisation and a Radon transform</span></li>
+          <li><b>Measure</b><span>Contrast in each of the 21 bar groups, cut off at MTF10</span></li>
+          <li><b>Report</b><span>The limiting resolution, in line pairs per mm</span></li>
+        </ol>
+        <p class="people">Supervised by Prof. Kawal Rhode, School of Biomedical Engineering &amp; Imaging Sciences, King’s College London. With thanks to Carlo Saija for his support with MATLAB.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="publications" aria-labelledby="h-pubs">
+    <div class="sec-head"><h2 id="h-pubs">Publications</h2></div>
+    <div class="sec-body">
+      <ol class="pubs">
+        <li class="pub">
+          <p class="pub-year">2025</p>
+          <div>
+            <p class="pub-title">Hierarchical attention transformer provides assistant suggestions for orbital rejuvenation surgery</p>
+            <p class="pub-authors">Lian X, Hu X, Li G, Wu S, <span class="me">Liu Y</span>, Qin K, Liu K</p>
+            <p class="pub-venue"><i>Frontiers in Medicine</i> 12</p>
+            <div class="pub-foot">
+              <a class="doi" href="https://doi.org/10.3389/fmed.2025.1532195" target="_blank" rel="noopener">doi:10.3389/fmed.2025.1532195</a>
+            </div>
+          </div>
+        </li>
+      </ol>
+      <p class="note"><a href="https://scholar.google.com/citations?user=jnAepbcAAAAJ" target="_blank" rel="noopener">Google Scholar</a> has the current list.</p>
+    </div>
+  </section>
+
+  <section id="other" aria-labelledby="h-other">
+    <div class="sec-head"><h2 id="h-other">Side projects</h2></div>
+    <div class="sec-body">
+      <div class="others">
+        <article class="other">
+          <p class="label">2024–25 · École Polytechnique</p>
+          <h3>A chess engine in C++</h3>
+          <p>Written with three classmates, using alpha-beta search and an evaluation function trained on augmented game data. It reached an estimated 2790 Elo and placed 5th of 26 teams.</p>
+        </article>
+        <article class="other">
+          <p class="label">2024–26 · Paris</p>
+          <h3>LeGuideParis</h3>
+          <p>A guide to Paris for visitors to the 2024 Olympics, hand-coded in HTML, CSS and JavaScript with Adrian Duffieux. It had about 6,000 visitors in its first three months and has since been retired.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="plate">
+  <div class="wrap foot">
+    <p class="langs">Correspondence welcome in <span lang="en">English</span>, <span lang="pt">português</span>, <span lang="fr">français</span> or <span class="han" lang="zh-Hans">中文</span>.</p>
+    <div class="colophon">
+      <p><a href="mailto:yihao.liu@imperial.ac.uk">yihao.liu@imperial.ac.uk</a></p>
+      <p>Last updated October 2026</p>
+      <p>© <span id="year">2026</span> Yihao Liu · London</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  // "Now" on the swimmer plot follows today's date (clamped to the axis, 2016 to 2028).
+  var d = new Date();
+  var now = d.getFullYear() + (d.getMonth() + (d.getDate() - 1) / 31) / 12;
+  now = Math.min(2027.95, Math.max(2016, now));
+  var path = document.getElementById('path');
+  if (path) path.style.setProperty('--now', now.toFixed(3));
+  var nowLab = document.getElementById('now-lab');
+  if (nowLab) nowLab.textContent = d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+  var yr = document.getElementById('year');
+  if (yr) yr.textContent = String(d.getFullYear());
+
+  // Theme toggle: explicit choice overrides the system setting.
+  var themeBtn = document.getElementById('theme-btn');
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function syncThemeLabel() { if (themeBtn) themeBtn.textContent = isDark() ? 'Light' : 'Dark'; }
+  try { var saved = localStorage.getItem('yl-theme'); if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved); } catch (e) {}
+  syncThemeLabel();
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', syncThemeLabel);
+  }
+  if (themeBtn) themeBtn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('yl-theme', next); } catch (e) {}
+    syncThemeLabel();
+  });
+
+  // Copy email.
+  var copyBtn = document.getElementById('copy-btn');
+  var addr = document.getElementById('email-addr');
+  function selectAddr() {
+    var r = document.createRange(); r.selectNodeContents(addr);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  function flash(text) {
+    copyBtn.textContent = text;
+    clearTimeout(flash.t);
+    flash.t = setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1800);
+  }
+  if (copyBtn && addr) copyBtn.addEventListener('click', function () {
+    var text = addr.textContent.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { flash('Copied'); }, function () { selectAddr(); flash('Selected'); });
+    } else { selectAddr(); flash('Selected'); }
+  });
+
+})();
+</script>
+</body>
+</html>
