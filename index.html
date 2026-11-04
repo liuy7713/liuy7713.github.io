@@ -4,11 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yihao Liu</title>
-<meta name="description" content="Yihao Liu, MSc student and visiting researcher at Imperial College London, working on health data and a multimorbidity index built from GP prescriptions.">
+<meta name="description" content="Yihao Liu, MSc student and visiting researcher at Imperial College London, working on multimorbidity, prescription data and mortality risk.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=Atkinson+Hyperlegible+Next:wght@400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400&display=swap&text=%E4%B8%AD%E6%96%87%E4%B8%8A%E6%B5%B7%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%A6%E5%8C%BB%E5%AD%A6%E9%99%A2%E9%99%84%E5%B1%9E%E7%AC%AC%E4%B9%9D%E4%BA%BA%E6%B0%91%E5%8C%BB%E9%99%A2">
 <style>
 /*
   Direction: "One ink". The whole site is printed in a single cobalt ink on porcelain,
@@ -371,7 +370,7 @@ main section:first-child { border-top: 0; }
 </style>
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Yihao Liu">
-<meta property="og:description" content="Yihao Liu, MSc student and visiting researcher at Imperial College London, working on health data and a multimorbidity index built from GP prescriptions.">
+<meta property="og:description" content="Yihao Liu, MSc student and visiting researcher at Imperial College London, working on multimorbidity, prescription data and mortality risk.">
 <meta property="og:url" content="https://yihao-liu.com/">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://yihao-liu.com/">
@@ -399,7 +398,9 @@ main section:first-child { border-top: 0; }
   ],
   "knowsAbout": [
     "Biostatistics",
-    "Computational epidemiology",
+    "Epidemiology",
+    "Multimorbidity",
+    "Risk prediction",
     "Survival analysis",
     "Health data science",
     "Medical imaging"
@@ -427,7 +428,7 @@ main section:first-child { border-top: 0; }
         <a href="#about">About</a>
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
-        <a href="#other">Projects</a>
+        <a href="#other">Other projects</a>
       </nav>
       <button type="button" class="theme-btn" id="theme-btn" aria-label="Switch colour theme">Dark</button>
     </div>
@@ -436,14 +437,14 @@ main section:first-child { border-top: 0; }
 
     <div class="mast-grid">
       <div>
-        <p class="positioning">Working out what a person’s GP prescriptions say about their health.</p>
-        <p class="affiliation">MSc Health Data Analytics &amp; Machine Learning, and visiting researcher in the Department of Epidemiology &amp; Biostatistics, Imperial College London</p>
+        <p class="positioning">Multimorbidity, survival analysis and risk prediction using routinely collected health data.</p>
+        <p class="affiliation">MSc student, Health Data Analytics and Machine Learning, Imperial College London<br>Visiting researcher, Department of Epidemiology and Biostatistics, School of Public Health</p>
       </div>
       <ul class="contact" aria-label="Links">
         <li><a href="https://scholar.google.com/citations?user=jnAepbcAAAAJ" target="_blank" rel="noopener">Google Scholar <span class="arrow" aria-hidden="true">↗</span></a></li>
         <li><a href="https://github.com/liuy7713" target="_blank" rel="noopener">GitHub <span class="arrow" aria-hidden="true">↗</span></a></li>
         <li><a href="https://www.linkedin.com/in/yihao-liu/" target="_blank" rel="noopener">LinkedIn <span class="arrow" aria-hidden="true">↗</span></a></li>
-        <li><a href="cv.pdf" target="_blank" rel="noopener">CV, PDF <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a href="cv.pdf" target="_blank" rel="noopener">CV (PDF) <span class="arrow" aria-hidden="true">↗</span></a></li>
         <li class="email">
           <a class="email-addr" id="email-addr" href="mailto:yihao.liu@imperial.ac.uk">yihao.liu@imperial.ac.uk</a>
           <button type="button" class="copy-btn" id="copy-btn" aria-describedby="email-addr">Copy</button>
@@ -458,14 +459,14 @@ main section:first-child { border-top: 0; }
     <div class="sec-head"><h2 id="h-about">About</h2></div>
     <div class="sec-body">
       <div class="prose">
-        <p>I trained in mathematics and computer science at École Polytechnique, with an exchange term at King’s College London. Over those three years my interest moved from the theory itself towards applying it to clinical and population health data.</p>
-        <p>I am now reading for the MSc in Health Data Analytics and Machine Learning at Imperial’s School of Public Health, supported by an SPH Masters Scholarship. Alongside the degree I am a visiting researcher in the EBS Omics group, where my bachelor thesis on GP prescription records has developed into an ongoing project.</p>
-        <p>My first clinical experience was a summer at Shanghai Ninth People’s Hospital in 2023, observing plastic and reconstructive surgery. In 2025 I joined the research summer school at St Thomas’ Hospital, building software for X-ray quality assurance.</p>
+        <p>I am an MSc student in Health Data Analytics and Machine Learning at Imperial College London, funded by a School of Public Health Masters Scholarship. Since October 2025 I have also been a visiting researcher in the Department of Epidemiology and Biostatistics, supervised by Prof. Marc Chadeau-Hyam and Dr Dragana Vuckovic. There I am developing a multimorbidity index from UK Biobank prescription records to predict all-cause mortality.</p>
+        <p>I hold a BSc in Mathematics and Computer Science from École Polytechnique (2026, cum laude), which included an exchange semester at King’s College London. In summer 2025 I was a research intern at King’s, working on quality assurance for fluoroscopy.</p>
+        <p>Languages: English, French, Mandarin, Portuguese.</p>
       </div>
 
-      <figure class="path" id="path" aria-labelledby="path-cap">
+      <figure class="path" id="path" aria-labelledby="path-title">
         <div class="path-head">
-          <p class="label">Where I’ve been, 2021 to now</p>
+          <p class="label" id="path-title">Education and research, 2021–2027</p>
           <div class="legend" aria-hidden="true">
             <span><i class="key"></i>Completed</span>
             <span><i class="key ongoing"></i>Ongoing</span>
@@ -487,49 +488,41 @@ main section:first-child { border-top: 0; }
             </div>
           </div>
 
-          <p class="group-name">Portugal <span class="codes">PT · EN</span></p>
+          <p class="group-name">Portugal</p>
           <div class="row">
             <p class="lab"><b>St Julian’s School</b>, IB Diploma <span class="meta">2016–2023</span></p>
             <div class="track" aria-hidden="true"><span class="bar left-open" style="--s:2021;--e:2023.5;--i:0"></span><span class="now-line"></span></div>
           </div>
 
-          <p class="group-name">China <span class="codes">ZH</span></p>
-          <div class="row">
-            <p class="lab"><b>Shanghai Ninth People’s Hospital</b>, observership <span class="meta">summer 2023</span><span class="han" lang="zh-Hans">上海交通大学医学院附属第九人民医院</span></p>
-            <div class="track" aria-hidden="true"><span class="bar" style="--s:2023.5;--e:2023.67;--i:2"></span><span class="now-line"></span></div>
-          </div>
-
-          <p class="group-name">France <span class="codes">FR · EN</span></p>
+          <p class="group-name">France</p>
           <div class="row">
             <p class="lab"><b>École Polytechnique</b>, BSc <span class="meta">2023–2026</span></p>
-            <div class="track" aria-hidden="true"><span class="bar" style="--s:2023.67;--e:2026.5;--i:3"></span><span class="now-line"></span></div>
+            <div class="track" aria-hidden="true"><span class="bar" style="--s:2023.67;--e:2026.58;--i:1"></span><span class="now-line"></span></div>
           </div>
 
-          <p class="group-name">United Kingdom <span class="codes">EN</span></p>
+          <p class="group-name">United Kingdom</p>
           <div class="row">
-            <p class="lab"><b>King’s College London</b>, X-ray project <span class="meta">summer 2025</span></p>
-            <div class="track" aria-hidden="true"><span class="bar" style="--s:2025.5;--e:2025.67;--i:4"></span><span class="now-line"></span></div>
+            <p class="lab"><b>King’s College London</b>, research intern <span class="meta">Jul–Aug 2025</span></p>
+            <div class="track" aria-hidden="true"><span class="bar" style="--s:2025.5;--e:2025.67;--i:2"></span><span class="now-line"></span></div>
           </div>
           <div class="row">
-            <p class="lab"><b>King’s College London</b>, exchange term <span class="meta">2025–2026</span></p>
-            <div class="track" aria-hidden="true"><span class="bar" style="--s:2025.67;--e:2026.04;--i:5"></span><span class="now-line"></span></div>
+            <p class="lab"><b>King’s College London</b>, exchange semester <span class="meta">2025–2026</span></p>
+            <div class="track" aria-hidden="true"><span class="bar" style="--s:2025.67;--e:2026.08;--i:3"></span><span class="now-line"></span></div>
           </div>
           <div class="row">
-            <p class="lab"><b>Imperial, EBS Omics group</b>, visiting researcher <span class="meta">2025–</span></p>
-            <div class="track" aria-hidden="true"><span class="bar ongoing" style="--s:2025.83;--i:6"></span><span class="now-line"></span></div>
+            <p class="lab"><b>Imperial College London</b>, visiting researcher <span class="meta">2025–</span></p>
+            <div class="track" aria-hidden="true"><span class="bar ongoing" style="--s:2025.75;--i:4"></span><span class="now-line"></span></div>
           </div>
           <div class="row">
             <p class="lab"><b>Imperial College London</b>, MSc <span class="meta">2026–2027</span></p>
-            <div class="track" aria-hidden="true"><span class="bar" style="--s:2026.67;--e:2027.67;--i:7"></span><span class="now-line"></span></div>
+            <div class="track" aria-hidden="true"><span class="bar" style="--s:2026.67;--e:2027.75;--i:5"></span><span class="now-line"></span></div>
           </div>
 
           <div class="axis bottom" aria-hidden="true">
             <div class="lab">&nbsp;</div>
-            <div class="track"><span class="now-line"></span><span class="now-lab" id="now-lab">Oct 2026</span></div>
+            <div class="track"><span class="now-line"></span><span class="now-lab" id="now-lab">Nov 2026</span></div>
           </div>
         </div>
-
-        <figcaption id="path-cap">Drawn as a swimmer plot. The letters beside each country are the languages I studied or worked in there.</figcaption>
       </figure>
     </div>
   </section>
@@ -541,78 +534,78 @@ main section:first-child { border-top: 0; }
       <article class="project" id="pmmi" aria-labelledby="h-pmmi">
         <div class="meta-row">
           <span class="chip solid">Ongoing</span>
-          <span class="chip">Preprint forthcoming</span>
-          <span>PMMI · Imperial College London · since 2025</span>
+          <span class="chip">Manuscript in preparation</span>
+          <span>Imperial College London · Oct 2025–present</span>
         </div>
-        <h3 id="h-pmmi">Prescription‑Mediated Multi‑Morbidity Index</h3>
+        <h3 id="h-pmmi">Prescription‑Mediated Multi‑Morbidity Index (PMMI)</h3>
         <div class="prose">
-          <p>Multimorbidity is usually measured by counting diagnoses, as established indices such as Charlson and Elixhauser do. PMMI is built from GP prescription records instead. The question is whether the medicines a person takes carry information about their mortality risk that their diagnoses miss.</p>
+          <p>Established comorbidity indices, such as Charlson and Elixhauser, are built from recorded diagnoses. PMMI is built instead from primary-care prescription records in UK Biobank. We ask whether prescriptions add information on all-cause mortality risk beyond these diagnosis-based indices.</p>
         </div>
-        <ol class="steps" aria-label="Approach">
-          <li><b>Prescriptions</b><span>GP prescription records in UK Biobank, grouped into sex-specific British National Formulary categories</span></li>
-          <li><b>Selection</b><span>Elastic-net Cox regression and stability selection calibrated with SHARP, to find a small set that holds up when the data change</span></li>
-          <li><b>Check</b><span>Random survival forests, to see what a non-linear model would pick</span></li>
-          <li><b>Score</b><span>A short integer score you can read off without a model</span></li>
+        <ol class="steps" aria-label="Methods">
+          <li><b>Data</b><span>Prescriptions grouped by British National Formulary (BNF) category; analyses stratified by sex, each with its own category set</span></li>
+          <li><b>Variable selection</b><span>Elastic-net penalised Cox regression, alone and within stability selection (naive and calibrated with SHARP)</span></li>
+          <li><b>Benchmark</b><span>Random survival forests, a non-parametric comparator that allows for non-linear effects and interactions</span></li>
+          <li><b>Score</b><span>An integer risk score built from the selected categories</span></li>
         </ol>
-        <p class="people">Developed from my bachelor thesis. Supervised by Dr Dragana Vuckovic and Prof. Marc Chadeau-Hyam, with Dr Rin Wada. EBS Omics group, Department of Epidemiology &amp; Biostatistics, School of Public Health.</p>
+        <p class="people">Supervisors: Prof. Marc Chadeau-Hyam and Dr Dragana Vuckovic. With Dr Rin Wada. Developed from my bachelor’s thesis.</p>
       </article>
 
       <article class="project" id="xray" aria-labelledby="h-xray">
         <div class="meta-row">
-          <span class="chip">Finished</span>
-          <span>King’s College London, BMEIS · summer 2025</span>
+          <span class="chip">Completed</span>
+          <span>School of Biomedical Engineering and Imaging Sciences, King’s College London · Jul–Aug 2025</span>
         </div>
-        <h3 id="h-xray">Checking X-ray image quality automatically</h3>
+        <h3 id="h-xray">Automated spatial‑resolution measurement for fluoroscopy quality assurance</h3>
         <div class="prose">
-          <p>Hospitals check their fluoroscopy systems by imaging a test object, a phantom, and finding the finest pattern of lines the system can still resolve. This is usually done by eye, which is slow and varies between readers.</p>
-          <p>At the research summer school at St Thomas’ Hospital I wrote a MATLAB pipeline that automates this reading for the Leeds TOR 18FG phantom. It takes about a second per image and resolves detail roughly 50% finer than human readers. Results were validated against ImageJ.</p>
+          <p>Routine quality assurance of fluoroscopy systems includes imaging a resolution test phantom and reading the system’s limiting spatial resolution by eye, which is slow and varies between observers.</p>
+          <p>I wrote a MATLAB pipeline that automates this reading for the Leeds TOR 18FG phantom, at about one second per image. Its estimates of limiting resolution were about 50% higher in line pairs per millimetre (lp/mm) than observers’ visual readings. They were checked against measurements made in ImageJ.</p>
         </div>
         <ol class="steps" aria-label="Pipeline">
-          <li><b>Prepare</b><span>Clean up the DICOM image</span></li>
-          <li><b>Locate</b><span>Find the phantom’s rim with Canny edges and a Hough transform</span></li>
-          <li><b>Align</b><span>Straighten it with Powell optimisation and a Radon transform</span></li>
-          <li><b>Measure</b><span>Contrast in each of the 21 bar groups, cut off at MTF10</span></li>
-          <li><b>Report</b><span>The limiting resolution, in line pairs per mm</span></li>
+          <li><b>Input</b><span>DICOM images, preprocessed before analysis</span></li>
+          <li><b>Localisation</b><span>Phantom rim located by Canny edge detection and a Hough transform</span></li>
+          <li><b>Alignment</b><span>Rotation corrected by Powell optimisation and a Radon transform</span></li>
+          <li><b>Measurement</b><span>Contrast in each of the 21 bar-pattern groups; limiting resolution in lp/mm taken at a 10% contrast threshold</span></li>
         </ol>
-        <p class="people">Supervised by Prof. Kawal Rhode, School of Biomedical Engineering &amp; Imaging Sciences, King’s College London. With thanks to Carlo Saija for his support with MATLAB.</p>
+        <p class="people">Supervisor: Prof. Kawal Rhode. Thanks to Carlo Saija for MATLAB advice.</p>
       </article>
 
     </div>
   </section>
 
   <section id="publications" aria-labelledby="h-pubs">
-    <div class="sec-head"><h2 id="h-pubs">Publications</h2></div>
+    <div class="sec-head"><h2 id="h-pubs">Publications and manuscripts</h2></div>
     <div class="sec-body">
       <ol class="pubs">
         <li class="pub">
           <p class="pub-year">2025</p>
           <div>
-            <p class="pub-title">Hierarchical attention transformer provides assistant suggestions for orbital rejuvenation surgery</p>
-            <p class="pub-authors">Lian X, Hu X, Li G, Wu S, <span class="me">Liu Y</span>, Qin K, Liu K</p>
-            <p class="pub-venue"><i>Frontiers in Medicine</i> 12</p>
+            <p class="pub-title">Hierarchical attention transformer provides assistant suggestions for orbital rejuvenation surgery.</p>
+            <p class="pub-authors">Lian X, Hu X, Li G, Wu S, <strong class="me">Liu Y</strong>, Qin K, Liu K.</p>
+            <p class="pub-venue"><i>Front Med (Lausanne).</i> 2025;12:1532195.</p>
             <div class="pub-foot">
               <a class="doi" href="https://doi.org/10.3389/fmed.2025.1532195" target="_blank" rel="noopener">doi:10.3389/fmed.2025.1532195</a>
             </div>
           </div>
         </li>
+        <li class="pub">
+          <p class="pub-year">In prep.</p>
+          <div>
+            <p class="pub-title">A Prescription‑Mediated Multi‑Morbidity Index (PMMI) for all-cause mortality risk prediction in UK Biobank.</p>
+            <p class="pub-authors"><strong class="me">Liu Y</strong>, Wada R, Vuckovic D, Chadeau-Hyam M.</p>
+          </div>
+        </li>
       </ol>
-      <p class="note"><a href="https://scholar.google.com/citations?user=jnAepbcAAAAJ" target="_blank" rel="noopener">Google Scholar</a> has the current list.</p>
     </div>
   </section>
 
   <section id="other" aria-labelledby="h-other">
-    <div class="sec-head"><h2 id="h-other">Side projects</h2></div>
+    <div class="sec-head"><h2 id="h-other">Other projects</h2></div>
     <div class="sec-body">
       <div class="others">
         <article class="other">
           <p class="label">2024–25 · École Polytechnique</p>
-          <h3>A chess engine in C++</h3>
-          <p>Written with three classmates, using alpha-beta search and an evaluation function trained on augmented game data. It reached an estimated 2790 Elo and placed 5th of 26 teams.</p>
-        </article>
-        <article class="other">
-          <p class="label">2024–26 · Paris</p>
-          <h3>LeGuideParis</h3>
-          <p>A guide to Paris for visitors to the 2024 Olympics, hand-coded in HTML, CSS and JavaScript with Adrian Duffieux. It had about 6,000 visitors in its first three months and has since been retired.</p>
+          <h3>Chess engine in C++</h3>
+          <p>Written with three classmates, using alpha‑beta search and an evaluation function trained on augmented game data; 5th of 26 teams.</p>
         </article>
       </div>
     </div>
@@ -621,11 +614,10 @@ main section:first-child { border-top: 0; }
 
 <footer class="plate">
   <div class="wrap foot">
-    <p class="langs">Correspondence welcome in <span lang="en">English</span>, <span lang="pt">português</span>, <span lang="fr">français</span> or <span class="han" lang="zh-Hans">中文</span>.</p>
     <div class="colophon">
       <p><a href="mailto:yihao.liu@imperial.ac.uk">yihao.liu@imperial.ac.uk</a></p>
-      <p>Last updated October 2026</p>
-      <p>© <span id="year">2026</span> Yihao Liu · London</p>
+      <p>Last updated November 2026</p>
+      <p>© <span id="year">2026</span> Yihao Liu</p>
     </div>
   </div>
 </footer>
